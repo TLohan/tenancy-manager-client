@@ -1,0 +1,61 @@
+<div class="container-fluid card rentReview">
+  <div class="card-body" *ngIf="!newReviewMode">
+      
+      <div class="row card-text" *ngIf="rentReview === null">
+          <!-- No rent reviews -->
+          <div class="col-12 alert alert-warning">
+              This lease has no scheduled rent reviews.
+          </div>
+      </div>
+  
+      <div class="row rentReviewInfo card-text" *ngIf="rentReview !== null">
+          <!-- Next rent review -->
+          <hr>
+          <div class="col-md-4 col-sm-12">
+              <p class="review-data-title text-secondary">Next Review</p>
+              <p class="review-data">{{rentReview.takesEffectOn | date}}</p>
+          </div>
+          <div class="col-md-4 col-sm-12">
+              <p class="review-data-title text-secondary">Reviewed Rent</p>
+              <p class="review-data">{{rentReview.reviewedRent | currency: 'EUR':'symbol':'1.2'}}</p>
+          </div>
+          <div class="col-md-4 col-sm-12">
+              <p class="review-data-title text-secondary">Serve Notice</p>
+              <p class="review-data">{{rentReview.serveNoticeBy | date}}</p>
+          </div>
+          <hr>
+      </div>
+      
+      <button class="col-12 btn btn-outline-info" *ngIf="canBeReviewed()" (click)="executeReview()">Executef Review</button>
+  </div>  
+
+  <div class="card-body" *ngIf="newReviewMode">
+      <form [formGroup]="newReviewFormGroup">
+
+          <div class="form-group row align-items-center">
+              <label class="col-4" for="takesEffectOn">Takes Effect From:</label>
+              <input type="date" formControlName="takesEffectOn" class="form-control col-8">
+          </div>
+
+          <div class="form-group row">
+              <p class="col-12">Alter Rent By:</p>
+              <div class="input-group col-5">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text">€</div>
+                      <input type="number" class="form-control" formControlName="newRent" placeholder="New Rent">
+                  </div>
+              </div>
+              <div class="input-group col-5 offset-1">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text">%</div>
+                      <input type="number" class="form-control" formControlName="percent" placeholder="Percent Change">
+                  </div>
+              </div>
+          </div>
+
+          <button class="btn btn-success col" (click)="save()">Save</button>
+
+      </form>
+  </div>
+
+</div>

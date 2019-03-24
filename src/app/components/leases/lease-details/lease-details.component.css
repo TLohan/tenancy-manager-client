@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700,800|Raleway');
+@media (max-width: 767.98px) {
+    .leaseType {
+        margin: 4% 0;
+        text-align: center;
+    }
+    
+    .leaseType > p  {
+        margin: 4% 0;
+        text-transform: uppercase;
+    }
+} 
+.mark {
+    /*background-color: #bfd8d2;
+    color: #DF744a;*/
+    /* font-weight: 700;
+    font-size: 16px; */
+    font-family: Montserrat, sans-serif;
+    /* background-color: white;
+    margin-bottom: 0.5%; */
+}
+
+.section {
+    background-color: white;
+    /* padding: 2%; */
+}
+
+.section-separator {
+    background-color: #6CB2EB;
+    margin-top: 0;
+}
+
+.leaseType > p {
+    font-size: large;
+}
+
+

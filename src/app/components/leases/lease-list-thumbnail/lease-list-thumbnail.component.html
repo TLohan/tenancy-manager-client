@@ -1,0 +1,21 @@
+<div class="container" [ngClass]="{odd: isOdd(), even: !isOdd()}">
+    <div id="title">
+        <h2 id="flatNumber">Flat {{lease.flat.number}}</h2>
+        <p id="startDate">Started: 25th July 2016</p>
+    </div>
+
+    <hr>
+
+    <div class="row" id="tenantInfo">
+        <div class="col-10" *ngFor="let tenant of lease.tenants">
+            <span id="tenantName">{{tenant.firstName}} {{tenant.lastName}}</span>
+            <span id="phoneNumber">{{tenant.phoneNumber}}</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" id="rentInfo">
+        <h3 class="col-10">{{lease.rent | currency:'EUR'}}</h3>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway:400:800');
+
+.navbar {
+    background-color:#15aabf;
+    color: #fff;
+}
+
+.navbar-brand {
+    font-family: Montserrat;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-family: Raleway;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: #c4bebe;
+}
+
+.is-active {
+    font-weight: 800;
+    color: yellow;
+}
+
+.logo {
+    width: 50%;
+    align-content:center;
+    padding: 0;
+    margin: 0;
+}

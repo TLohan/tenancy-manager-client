@@ -1,0 +1,71 @@
+<div class="container-fluid card tenant-thumbnail">
+  <div class="row" *ngIf="!editMode">
+
+      <div class="col-md-12 col-sm-12">
+          <div class="container-fluid">
+
+              <div class="row">
+                  <div class="col-10 card-title"><h5>{{tenant.firstName}} {{tenant.lastName}}</h5></div>
+                  <div class="col-2"><button *ngIf="isEditable" class="btn btn-sm btn-info editBtn" (click)="edit()">Edit</button></div>    
+              </div>
+          </div>
+         
+          <div class="col-sm-12" *ngIf="tenant.dateOfBirth !== ''">
+              <p class="tenant-data-title  text-secondary">Date of Birth</p> 
+              <p class="tenant-data">{{tenant.dateOfBirth | date}}</p>
+          </div>
+          <div class="col-sm-12" *ngIf="tenant.phoneNumber !== ''">
+              <p class="tenant-data-title text-secondary">Phone Number</p>
+              <p class="tenant-data">{{tenant.phoneNumber}}</p>
+          </div>
+          <div class="col-sm-12" *ngIf="tenant.employment !== ''">
+              <p class="tenant-data-title text-secondary">Employment</p> 
+              <p class="tenant-data">{{tenant.employment}}</p>
+          </div>
+      </div>
+
+  </div>
+  <div class="row" *ngIf="editMode">
+      <form class="col" [formGroup]="editTenantFormGroup">
+
+          <div class="row nameFields">
+              <div class="form-group col-6">
+                  <input type="text" formControlName="firstName" placeholder="First Name" class="form-control" required>
+                  <div class="feedback">
+                      <div class="error" *ngIf="firstName.invalid && (firstName.touched || firstName.pristine)">
+                          <span *ngIf="firstName.errors.required">Required!</span>
+                          <span *ngIf="firstName.errors.minlength">First name must be over 2 characters long!</span>
+
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group col-6">
+                  <input type="text" formControlName="lastName" placeholder="Last Name" class="form-control" required>
+                  <div class="feedback">
+                      <div class="error" *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
+                          <span *ngIf="lastName.errors.required">Required!</span>
+                          <span *ngIf="lastName.errors.minlength">Last name must be over 2 characters long!</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="dateOfBirth">Date of Birth:</label>
+              <input type="date" formControlName="dateOfBirth" class="form-control">
+          </div>
+
+          <div class="form-group">
+              <label for="phoneNumber">Phone Number:</label>
+              <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Phone Number">
+          </div>
+
+          <div class="form-group">
+              <label for="employment">Employment:</label>
+              <input type="text" class="form-control" formControlName="employment">
+          </div>
+
+          <button class="btn btn-success" (click)="save()">Save</button>
+      </form>
+  </div>
+</div>

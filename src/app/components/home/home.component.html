@@ -1,0 +1,73 @@
+<div class="container-fluid" >
+
+    <div class="row">
+        <div class="col-md-4 col-sm-12 housePanelWrapper" id="house{{house.id}}" *ngFor="let house of houses">
+            <div class="housePanel" >
+                <h2 class="houseName">{{house.name | titlecase}}</h2>
+                <div class="flatRow"  *ngFor="let flat of house.flats" (mouseover)="highlightRow(flat)" (mouseleave)="highlightRow(undefined)">
+                    <a [routerLink]="['/houses', house.name, 'flats', flat.number]">
+                        <div class="row" [ngClass]="{'highlight': flat.id === highlightedRow}">
+                            <span class="col-2">{{flat.number}}</span>
+                            <div class="col-10 currentRent">
+                                <span *ngIf="flat.currentLease !== null">Occupied - {{flat.currentLease.rent | currency:'EUR':'symbol':'1.0'}}</span>
+                                <span *ngIf="flat.currentLease == null">Unoccupied</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col hometable">
+            <h4 class="mark">Rents</h4>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr class="table-header">
+                        <th>House</th>
+                        <th>Per Month</th>
+                        <th>Year To Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let house of houses">
+                        <td>{{house.name | titlecase}}</td>
+                        <td>{{house.totalRentPerMonth | currency:'EUR':'symbol':'1.0'}}</td>
+                        <td>{{getYTDIncomeForHouse(house.name) | currency:'EUR':'symbol':'1.0'}}</td>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <th>{{totalRent | currency:'EUR':'symbol':'3.0'}}</th>
+                        <th>{{totalRentPaid | currency:'EUR':'symbol':'1.0'}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col hometable">
+            <h4 class="mark ">Upcoming Rent Reviews</h4>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr class="table-header">
+                        <th>House</th>
+                        <th>Flat</th>
+                        <th>Date</th>
+                        <th>Serve Notice By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let review of nextRentReviews">
+                        <td>{{review.lease.flat.house.name | titlecase}}</td>
+                        <td>{{review.lease.flat.number}}</td>
+                        <td>{{review.takesEffectOn | date}}</td>
+                        <td>{{review.serveNoticeBy | date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

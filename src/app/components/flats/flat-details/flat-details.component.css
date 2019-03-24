@@ -1,0 +1,41 @@
+@font-face { font-family: "Montserrat"; src: local("Montserrat Medium"), url("//brick.freetls.fastly.net/fonts/montserrat/500.woff") format("woff"); font-style: normal; font-weight: 500; }
+
+app-lease-details-thumbnail {
+    margin-bottom: 4%;
+}
+
+.card-title {
+    font-weight: 500;
+    font-size: 16px;
+    color: #203A45;
+    font-family: "Montserrat", sans-serif;
+}
+
+.mark {
+    /*background-color: #bfd8d2;
+    color: #DF744a;*/
+    font-weight: 700;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    background-color: white;
+}
+
+.section-separator {
+    background-color: #6CB2EB;
+}
+
+.endLeaseBtn {
+    margin: 2% 0;
+}
+
+#currentLease {
+    cursor: pointer;
+}
+
+.header > div > button {
+    width: 100%;
+}
+
+.typeOfNewLease {
+    margin: 3%;
+}

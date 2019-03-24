@@ -1,0 +1,113 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-6 col-sm-12">
+          <div class="row column">
+              <h4 class="">Create {{typeOfLease | titlecase}} Lease</h4>
+              <hr  />
+              <div *ngIf="leaseFormMode">
+                  <form [formGroup]="leaseFormGroup" novalidate>
+                      <div class="form-group">
+                          <label for="rent"><strong>Rent</strong></label>
+                          <div *ngIf="rent.invalid && (rent.touched || rent.dirty || showValidation)" class="error" >
+                              <span class="error" *ngIf="rent.errors.required">Required</span>
+                              <span class="error" *ngIf="rent.errors.min">Must be above €399</span>
+                          </div>
+                          <div class="input-group input-group-sm">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">€</span>
+                              </div>
+                              <input type="number" name="rent" id="rent" formControlName="rent" class="form-control form-control-sm" required>
+                          </div>
+                      </div>
+  
+                      <div class="form-group">
+                          <label for="deposit"><strong>Deposit</strong></label>
+                          <div *ngIf="deposit.invalid && (deposit.touched || deposit.dirty || showValidation)" class="error" >
+                                  <span class="error" *ngIf="deposit.errors.required">Required</span>
+                                  <span class="error" *ngIf="deposit.errors.min">Must be above €399</span>
+                          </div>
+                          <div class="input-group input-group-sm">
+                              <div class="input-group-prepend">
+                                      <span class="input-group-text">€</span>
+                              </div>
+                              <input type="number" formControlName="deposit" id="deposit" class="form-control" required>
+                          </div>
+                      </div>
+          
+                      <div class="form-group">
+                          <label for=""><strong>Start Date</strong></label>
+                          <div *ngIf="startDate.invalid && (startDate.touched || startDate.dirty || showValidation)" class="error" >
+                                  <span class="error" *ngIf="startDate.errors.required">Required</span>
+                          </div>
+                          <input type="date" formControlName="startDate" id="startDate" class="form-control form-control-sm" required>
+                      </div>
+  
+                      <div class="form-group" *ngIf="typeOfLease === 'historic'">
+                          <label  for="">End Date</label>
+                          <div *ngIf="endDate.invalid && (endDate.touched || endDate.dirty || showValidation)" class="error" >
+                                  <span class="error" *ngIf="endDate.errors.required">Required</span>
+                          </div>
+                          <input type="date" formControlName="endDate" id="endDate" class="form-control form-control-sm">
+                      </div>
+          
+                      <div class="form-group">
+                          <label  for="numberOfTenants"><strong>Number of Tenants</strong></label>
+                          <div *ngIf="numTenants.invalid && (numTenants.touched || numTenants.dirty || showValidation)" class="error" >
+                                  <span class="error" *ngIf="numTenants.errors.required">Required</span>
+                          </div>
+                          <select formControlName="numberOfTenants" class="custom-select custom-select-sm" required>
+                              <option value="" disabled>Choose a number</option>
+                              <option [ngValue]="1">One</option>
+                              <option [ngValue]="2">Two</option>
+                              <option [ngValue]="3">Three</option>
+                              <option [ngValue]="4">Four</option>
+                          </select>
+                      </div>
+  
+                      <div class="form-group" *ngIf="typeOfLease == 'new'">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1" checked formControlName="autoGenRentReview" [value]="true">
+                                <label class="custom-control-label" for="customCheck1">Generate Rent Review Automatically</label>
+                            </div>
+                      </div>
+  
+  
+                      <div (mouseenter)="checkValidation()" (mouseleave)="showValidation = false">
+                          <button id="addTenantsBtn" class="btn btn-sm btn-success btn-lg col-12" [disabled]="!leaseFormGroup.valid" (click)="addTenants()">Add Tenants</button>
+                      </div>
+  
+                  </form>
+              </div>
+
+              <div *ngIf="!leaseFormMode">
+                  <hr>
+                  <app-lease-details-thumbnail [lease]="lease"></app-lease-details-thumbnail>
+              </div>
+
+          </div>
+      </div>
+
+      <div class="col-md-6 col-sm=12" *ngIf="addTenantsMode">
+          <h4>Tenants</h4>
+          <hr>
+          <div class="row">
+              <div class="col-md-6 col-sm-12" *ngFor="let tenant of newTenants.slice(0, nextTenantNumber-1)">
+                  <h6>Tenant {{newTenants.indexOf(tenant) + 1}}</h6>
+                  <hr>
+                  <app-tenant-details-thumbnail [tenant]="tenant"></app-tenant-details-thumbnail>
+                  <br>
+              </div>
+          </div>
+          <div *ngIf="addAnotherTenant">
+              <app-new-tenant-form [newTenant]="newTenants[nextTenantNumber - 1]" [number]="nextTenantNumber" (validTenantAdded)="appendTenant($event)"></app-new-tenant-form>
+              <br>
+          </div>
+      </div>
+
+
+      <div class="col-md-3 col-sm-12" *ngIf="validNewLease">
+          <button class="btn btn-success col" (click)="save()">Save Lease</button>
+      </div>
+      
+  </div>
+</div>

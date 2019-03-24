@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row align-items-center" id="yearSelector">
+      <div class="col-3">
+          <button class="btn btn-default" *ngIf="hasPrevYear" (click)="prevYear()" ><i class="fas fa-arrow-left"></i></button>
+      </div>
+      <div class="col-6" id="selectedYear">
+          <h4>{{selectedYear}}</h4>
+      </div>
+      <div class="col-3">
+          <button class="btn btn-default" *ngIf="hasNextYear" (click)="nextYear()"><i class="fas fa-arrow-right"></i></button>
+      </div>
+  </div>
+  <div class="col totalRent">
+      <h5>Rent paid for this year: {{rentPaidForSelectedYear | currency:'EUR':'symbol':'1.0'}}</h5>
+  </div>
+  <div class="row align-items-center">
+      <div class="col-3 month" *ngFor="let payment of selectedPayments" (click)="selectPayment(payment)" [ngClass]="payment.amount === 0 ? 'unoccupied' : 'occupied'" data-toggle="modal" data-target="#exampleModal">
+          <p class="monthName text-secondary">{{months[payment.month - 1]}}</p>
+          <p class="monthPayment">{{payment.amount | currency:'EUR':'symbol':'1.0'}}</p>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Rent for {{months[selectedPayment.month - 1]}} {{selectedYear}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="editRentFormGroup">
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text">€</div>
+                  </div>
+                  <input type="number" class="form-control" formControlName="rent"> 
+              </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" >Close</button>
+          <button type="button" class="btn btn-success" (click)="saveRent()" data-dismiss="modal">Save changes</button>
+      </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="container-fluid">
+  <br>
+  <div class="row header align-items-end">
+      <div class="col-md-4 col-sm-12 d-inline"><h3 class="d-inline display-4">Flat {{flat.number}} <span class="text-info">/</span> </h3>      <h2 class="d-inline text-secondary">{{flat.house.name | titlecase}}</h2></div> 
+     
+      <h4 class="col-md-2 col-sm-12 text-muted">MPRN: {{flat.MPRN_Number}}</h4>
+      <div class="col-md-2 offset-md-4 col-sm-12">
+          <button class="btn btn-success" *ngIf="!newLeaseMode" data-toggle="modal" data-target="#leaseTypeModal">Add Lease</button>
+          <button class="btn btn-warning" *ngIf="newLeaseMode" (click)="newLeaseMode=false" >Cancel</button>
+      </div>
+  </div>
+  <hr>
+
+  <div class="modal fade" id="leaseTypeModal" tabindex="-1" role="dialog" aria-labelledby="leaseTypeModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered " role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="leaseTypeModalLabel">Which type of lease would you like to create?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body row">
+                  <button class="btn btn-outline-info col typeOfNewLease" data-dismiss="modal" (click)="createBrandNewLease()">Brand New Lease</button>
+                  <button class="btn btn-outline-info col typeOfNewLease" data-dismiss="modal" (click)="createExistingLease()">Existing Lease</button>
+                  <button class="btn btn-outline-info col typeOfNewLease" data-dismiss="modal" (click)="createHistoricalLease()">Historical Lease</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="row" *ngIf="!newLeaseMode">
+      <div class="col-md-4 col-sm-12 lease-thumb">
+          <div id="currentLease" [routerLink]="['/leases', currentLease?.id]">
+              <div class="card">
+                  <div class="card-body">
+                      <h4 class="card-title mark">Current Lease</h4>
+                      <hr class="section-separator"/>
+                      <app-lease-details-thumbnail *ngIf="!noCurrentLeaseMode" [lease]="currentLease"></app-lease-details-thumbnail>
+                      <div *ngIf="noCurrentLeaseMode">
+                          <div class="alert alert-warning" role="alert">
+                              This flat has no current lease.
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <br>
+              <div class="card" *ngIf="!noCurrentLeaseMode">
+                  <div class="card-body">
+                      <h5 class="card-title mark">Tenants</h5>
+                      <hr class="section-separator"/>
+                      <div class="row" >
+                          <div class="col" *ngFor="let tenant of currentLease.tenants">
+                              <app-tenant-details-thumbnail  [tenant]="tenant"></app-tenant-details-thumbnail>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <button *ngIf="!noCurrentLeaseMode" class="col-12 btn btn-danger endLeaseBtn" data-toggle="modal" data-target="#endLeaseModal">End Lease</button>
+          
+              
+          <!-- END LEASE MODAL -->
+          <div class="modal fade" id="endLeaseModal" tabindex="-1" role="dialog" aria-labelledby="endLeaseModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="endLeaseModalLabel">End Lease</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <form [formGroup]="endLeaseFormGroup">
+                          <div class="form-group">
+                              <label for="endDate">End Date</label>
+                              <input type="date" formControlName="endDate" id="endDate" class="form-control">
+                          </div>
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" (click)="endLease(currentLease.id)" data-dismiss="modal">Save changes</button>
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-8 col-sm-12">
+          <div class="card" id="previousLeasesCard">
+              <div class="card-body">
+                  <h4 class="card-title mark">Previous Leases</h4>
+                  <hr class="section-separator"/>
+                  <table class="table table-hover" *ngIf="previousLeases.length > 0">
+                      <thead>
+                          <tr>
+                              <th scope="col">Start</th>
+                              <th scope="col">End</th>
+                              <th scope="col">Rent</th>
+                              <th scope="col">Tenants</th>
+                              <th scope="col"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let lease of previousLeases" [routerLink]="['/leases', lease.id]">
+                              <td>{{lease.startDate | date}}</td>
+                              <td>{{lease.endDate | date}}</td>
+                              <td>{{lease.deposit | currency:'EUR':'symbol':'4.0'}}</td>
+                              <td><p *ngFor="let tenant of lease.tenants">{{tenant.firstName}} {{tenant.lastName}}</p></td>
+                          </tr>
+                      </tbody>
+                  </table>
+
+                  <div class="col alert alert-info" *ngIf="previousLeases.length === 0">
+                      This lease has no previous tenancies.
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div *ngIf="newLeaseMode" class="row">
+      <div class="col-12">
+          <app-create-lease [typeOfLease]="typeOfNewLease" [flatId]="flat.id" (newLease)="setCurrentLease($event)"></app-create-lease>
+      </div>
+
+  </div>
+
+</div>

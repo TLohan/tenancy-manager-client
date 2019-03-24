@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700,800|Raleway');
+
+.housePanelWrapper {
+    color: #fff;
+    /* padding: 3%; */
+    margin-top: 1%;
+    border-radius: 2%;
+    border: 4px solid white;
+}
+
+.housePanel {
+    /* margin: 2%; */
+    padding: 3%;
+}
+
+
+.houseName {
+    font-family: Montserrat;
+    font-weight: bold;
+}
+
+
+.housePanel > .flatRow {
+    margin-top: 1%;
+    font-family: Raleway;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.highlight {
+    background-color: hotpink;
+    border-radius: 3%;
+}
+
+#house1 {
+    background-color: #1bc98e;
+    
+}
+
+#house2 {
+    background-color: #e64759;
+}
+
+#house3 {
+    background-color:#f7c331;
+}
+
+.currentRent {
+    text-align: left;
+}
+
+.mark {
+    /*background-color: #6CB2EB;
+    color: #FFF9C2;
+    font-size: 20px;
+    padding: 1.5%;
+    font-family: Lato, sans-serif;*/
+    font-family: Montserrat;
+}
+
+.table {
+    /*text-align: center;*/
+    /*background-color: white;*/
+    border-top: 2px solid #6CB2EB;
+}
+
+
+
+tr {
+    cursor: pointer;
+    font-family: Lato;
+    font-weight: 400;
+}
+
+.table-header {
+    /*background-color: #d9d9d9;
+    color: #438496;*/
+    font-weight: 700;
+}
+
+.flatRow > a:hover {
+    background-color: black;
+}
+
+.hometable {
+    background-color: white;
+    padding: 1%;
+    margin: 0 1%;
+}

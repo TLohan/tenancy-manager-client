@@ -1,0 +1,14 @@
+button:disabled {
+    cursor: not-allowed;
+}
+
+h5 {
+    margin-bottom: 0;
+}
+
+.error {
+    color: red;
+    float: right;
+    font-style: italic;
+    font-size: .9em;    
+}

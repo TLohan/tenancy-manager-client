@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700,800|Raleway');
+
+
+#yearSelector {
+    margin-bottom: .6em;
+    text-align: center;
+}
+
+#selectedYear {
+}
+
+.month {
+    text-align: center;
+    border: 1px solid grey;
+    font-size: .9em;
+}
+
+.monthName {
+    font-family: Raleway;
+    font-weight: 700;
+    padding-top: 5%;
+}
+
+.monthPayment {
+    font-size: 1.2em;
+    font-family: Lato;
+}
+
+.month:hover {
+    background-color: #FCFBEB;
+}
+
+.occupied {
+    background-color: #A2F5BF;
+    cursor: pointer;
+}
+
+.unoccupied {
+    background-color: #FCEBEA;
+    cursor: pointer;
+}
+
+.totalRent {
+    text-align: center;
+}
+
+.lease-data-title {
+    display: block;
+    font-size: .9em;
+    font-weight: 700;
+    margin-bottom: 1.5%;
+}
+
+.lease-data {
+    display: block;
+    font-size: 1.2em;
+}

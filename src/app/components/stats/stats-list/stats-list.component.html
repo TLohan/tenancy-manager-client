@@ -1,0 +1,49 @@
+<div class="container">
+<div class="row">
+    <div class="col-6 stat">
+        <h4 class="statTitle">Rental Income Per Month</h4>
+        <hr class="separator">
+        <canvas baseChart
+            [data]="barChartData"
+            [labels]="chartLabels"
+            [chartType]="barChartType"
+            [options]="barChartOptions"
+            [colors]="chartColors"
+            [plugins]="pieChartPlugins"
+            [legend]="pieChartLegend">
+        </canvas>
+    </div>
+
+    <div class="col-6 stat">
+        <h4 id="statTitle">Rental Income YTD</h4>
+        <hr class="separator">
+        <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [colors]="chartColors"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [legend]="pieChartLegend">
+        </canvas>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 stat">
+        <h4 id="statTitle">Annual Rental Incomes</h4>
+        <hr class="separator">
+        <canvas baseChart width="400" height="200"
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins">
+        </canvas>
+    </div>
+</div>
+
+
+</div>

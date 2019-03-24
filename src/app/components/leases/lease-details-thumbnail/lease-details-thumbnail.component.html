@@ -1,0 +1,36 @@
+<div class="container-fluid lease-thumb">
+  <div class="row card-body">
+
+      <div class="col-md-4 col-sm-6">
+          <p class="lease-data-title">Rent </p>
+          <p class="lease-data">{{lease.rent | currency:'EUR':'symbol':'1.2'}}</p>
+      </div>
+  
+      <div class="col-md-4 col-sm-6">
+          <p class="lease-data-title ">Deposit</p>
+          <p class="lease-data">{{lease.deposit | currency: 'EUR':'symbol':'1.2'}}</p>
+      </div>
+  
+      <div class="col-md-4 col-sm-6">
+          <p class="lease-data-title ">Start Date</p>
+          <p class="lease-data">{{lease.startDate | date}}</p>
+      </div>
+  
+      <div class="col-md-4 col-sm-6" *ngIf="!lease.isCurrent">
+          <p class="lease-data-title ">End Date: </p>
+          <p class="lease-data">{{lease.endDate | date}}</p>
+      </div>
+  
+      <div class="col-md-4 col-sm-6">
+          <p class="lease-data-title ">Occupied</p>
+          <p class="lease-data">{{getLengthOfTenancySoFar()}}</p>    
+      </div>
+  
+      <div class="col-md-4 col-sm-6" *ngIf="lease.isCurrent">
+          <p class="lease-data-title ">Ends On</p>
+          <p class="lease-data">{{getLeaseEndDate() | date}}</p>
+      </div>
+  </div>
+
+</div>
+

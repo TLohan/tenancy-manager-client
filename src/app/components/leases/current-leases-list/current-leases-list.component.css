@@ -1,0 +1,67 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700,800|Raleway');
+
+/* tr {
+    cursor: pointer;
+} */
+
+.container-fluid {
+    margin-top: 1%;
+}
+
+.title {
+    font: 900 30px Montserrat;
+    font-weight: 800;
+}
+
+/* table {
+    background-color: white;
+    border-top: 2px solid #6CB2EB;
+} */
+
+.section-separator {
+    background-color: #6CB2EB;
+}
+
+/* .card {
+    padding: 2%;
+    margin: 2%;
+} */
+
+.leaseThumbnail {
+    margin: 0 2%;
+    width: 20vw;
+    cursor: pointer;
+}
+
+.houseRow {
+    margin-bottom: 1%;
+    display: flex;
+    align-items: center;
+    height: 25vh;
+}
+
+.vertical-text {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: capitalize;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    color: #fff;    
+    font-weight: 600;
+    padding: 2% 1%;
+    width: 4vw;
+    vertical-align: middle;
+ }
+
+ #house1 {
+    background-color: #1bc98e;
+    
+}
+
+#house2 {
+    background-color: #e64759;
+}
+
+#house3 {
+    background-color:#f7c331;
+}

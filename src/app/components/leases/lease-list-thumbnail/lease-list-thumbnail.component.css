@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:500');
+
+
+.container {
+    background-color: #fd5750;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    padding: 2%;
+}
+
+.odd {
+    background-color: #fd5750;
+}
+
+.even {
+    background-color: #1d4d68;
+}
+hr {
+    background-color: #fff;
+}
+
+#flatNumber {
+    margin-bottom: 0;
+}
+
+#startDate {
+    font-size: .8em;
+}
+
+.odd > #tenantInfo > div > #tenantName {
+    color: #1d4d68;
+}
+
+.even > #tenantInfo > div > #tenantName {
+    color: #fd5750;
+}
+
+
+#phoneNumber {
+    margin-left: 5%;
+}

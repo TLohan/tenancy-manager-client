@@ -1,0 +1,53 @@
+<div class="container-fluid lease-details">
+  <br>
+  <div class="row align-items-end">
+      <div class="col-md-10 col-sm-12">
+          <div class="row">
+              <div class="col-md-8 col-sm-12">
+                  <h3 class="d-inline display-4">Flat {{lease.flat.number}} <span class="text-info">/</span> </h3>  <h2 class="d-inline text-secondary">{{lease.flat.house.name | titlecase}}</h2>
+              </div>
+              <div class="col-sm-12 leaseType d-inline">
+                  <p class="d-inline text-success" *ngIf="lease.isCurrent">Current Lease</p>
+                  <p class="d-inline text-warning" *ngIf="!lease.isCurrent">Previous Lease</p>
+                  <br />
+              </div>
+          </div>
+      </div>
+      <div class="col-md-2 col-sm-12">
+          <div class="row" *ngIf="lease.isCurrent">
+              <app-end-lease class="col" [lease]="lease"></app-end-lease>
+          </div>
+      </div>
+  </div>
+  <hr>
+  <div class="row">
+      <div class="col-md-6 col-sm-12">
+          <div class="section">
+              <h4 class="mark">Lease Details</h4>
+              <hr class="section-separator">
+              <app-lease-details-thumbnail [lease]="lease"></app-lease-details-thumbnail>
+          </div>
+          <br>
+          <div class="section">
+              <h4 class="mark">Rent Reviews</h4>
+              <hr class="section-separator">
+              <app-rent-review-details-thumbnail [rentReview]="lease.nextRentReview" [lease]="lease" (editedLease)="updateLease($event)"></app-rent-review-details-thumbnail>
+          </div>
+      </div>
+      <div class="col">
+          <div class="section">
+              <h4 class="mark">Tenants</h4>
+              <hr class="section-separator">
+              <div class="row">
+                  <app-tenant-details-thumbnail class="col" *ngFor="let tenant of lease.tenants" [tenant]="tenant" [isEditable]="true" (editClicked)="editTenant(tenant)"></app-tenant-details-thumbnail>
+              </div>
+          </div>
+          <div class="section">
+              <h4 class="mark">Rent Payments</h4>
+              <hr class="section-separator">
+              <app-payments-list [lease]="lease"></app-payments-list>
+          </div>
+          <br>
+      </div>
+  </div>
+</div>
