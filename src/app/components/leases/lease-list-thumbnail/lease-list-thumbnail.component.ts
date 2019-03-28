@@ -10,14 +10,19 @@ export class LeaseListThumbnailComponent implements OnInit {
 
     @Input() lease: Lease;
     @Input() rowNumber: number;
+    @Input() step: string;
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    isOdd(): boolean {
+    isRowOdd(): boolean {
         return (this.rowNumber % 2) === 0;
+    }
+
+    isThumbOdd(): boolean {
+        return this.step === 'odd';
     }
 
 }

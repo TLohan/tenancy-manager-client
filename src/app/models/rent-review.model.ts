@@ -9,6 +9,5 @@ export class RentReview {
     isInEffect = false;
     percent = 0;
     previousRent = 0;
-    reviewedRent = 0;
     lease: Lease;
 }

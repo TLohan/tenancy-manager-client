@@ -12,4 +12,9 @@ export class NavmenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  closeMenu() {
+      const menu = <HTMLElement>document.querySelector('.navbar-toggler');
+      menu.click();
+  }
+
 }

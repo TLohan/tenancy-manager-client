@@ -42,6 +42,7 @@ export class PaymentsListComponent implements OnInit, OnChanges {
         this.paymentsService.getPaymentsForLease(this.lease.id).subscribe(data => {
             this.payments = data;
             this.selectedPayments = this.filterPaymentsByYear(this.selectedYear);
+            console.log(this.payments);
             this.hasPrevYear = this.checkForPreviousYear(this.selectedYear);
         });
 

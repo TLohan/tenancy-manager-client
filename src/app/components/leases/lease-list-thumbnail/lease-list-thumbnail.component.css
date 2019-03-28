@@ -6,36 +6,65 @@
     color: #fff;
     font-family: 'Roboto', sans-serif;
     padding: 2%;
+    overflow: hidden;
 }
 
-.odd {
+.oddRow {
     background-color: #fd5750;
 }
 
-.even {
+.evenRow {
     background-color: #1d4d68;
 }
 hr {
     background-color: #fff;
+    margin: 0.5rem 0;
 }
 
 #flatNumber {
     margin-bottom: 0;
+    font-size: 3.4vh;
 }
 
 #startDate {
-    font-size: .8em;
+    font-size: 1.7vh;
 }
 
-.odd > #tenantInfo > div > #tenantName {
+.oddRow > #tenantInfo > div > #tenantName {
     color: #1d4d68;
 }
 
-.even > #tenantInfo > div > #tenantName {
+.evenRow > #tenantInfo > div > #tenantName {
     color: #fd5750;
 }
 
 
 #phoneNumber {
-    margin-left: 5%;
+    /* margin-left: 5%; */
+}
+
+span {
+    font-size: 1.8vh;
+}
+
+h3 {
+    font-size: 2.76vh;
+}
+
+@media (max-width: 575.98px) {
+    .oddThumb {
+        background-color: grey;
+    }
+    
+    .evenThumb {
+        background-color: #1d4d68;
+    }
+
+    .oddThumb > #tenantInfo > div > #tenantName {
+        color: #1d4d68;
+    }
+    
+    .evenThumb > #tenantInfo > div > #tenantName {
+        color: #fd5750;
+    }
 }

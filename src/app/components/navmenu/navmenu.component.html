@@ -6,13 +6,13 @@
     <a class="navbar-brand" href="#">Tenancy Manager</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0" routerLinkActive="active">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['is-active']">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['is-active']"  (click)="closeMenu()">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/currentLeases']" [routerLinkActive]="['is-active']">Current Leases</a>
+        <a class="nav-link" [routerLink]="['/currentLeases']" [routerLinkActive]="['is-active']" (click)="closeMenu()">Current Leases</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/stats']" [routerLinkActive]="['is-active']">Stats</a>
+        <a class="nav-link" [routerLink]="['/stats']" [routerLinkActive]="['is-active']" (click)="closeMenu()">Stats</a>
       </li>
     </ul>
   </div>

@@ -21,7 +21,7 @@ export class StatsListComponent implements OnInit {
     get labels(): string[] {
         const labels = [];
         this.houses.forEach(house => {
-            labels.push(house.name);
+            labels.push(`${house.name[0].toUpperCase()}${house.name.substr(1)}`);
         });
         return labels;
     }
@@ -34,7 +34,13 @@ export class StatsListComponent implements OnInit {
         return data;
     }
 
-    _pieChartData: number[] = [];
+    get _pieChartData(): number[] {
+        const results = [];
+        this.houses.forEach(house => {
+            results.push(this._YTDIncomesByHouse[house.name]);
+        });
+        return results;
+    }
 
     get incomeForLastFiveYears(): number[] {
         return this._incomeForLastFiveYears;
@@ -50,8 +56,6 @@ export class StatsListComponent implements OnInit {
     public pieChartLabels: Label[] = [];
     public pieChartData: SingleDataSet = [];
     public pieChartType: Chart.ChartType = 'pie';
-    // public pieChartLegend = true;
-    // public pieChartPlugins = [pluginDataLabels];
 
     public barChartOptions: Chart.ChartOptions = {
         responsive: true,
@@ -88,14 +92,15 @@ export class StatsListComponent implements OnInit {
     public pieChartOptions: Chart.ChartOptions = {
         responsive: true,
         legend: {
-            display: false
+            display: true,
+            labels: {
+                usePointStyle: true,
+            },
+            position: 'bottom'
         },
         plugins: {
           datalabels: {
-            formatter: (value, ctx) => {
-              const label = ctx.chart.data.labels[ctx.dataIndex];
-              return label;
-            },
+              display: false,
           },
         }
     };
@@ -163,11 +168,7 @@ export class StatsListComponent implements OnInit {
 
         this.paymentService.getIncomeForEachHouseThisYear().subscribe(data => {
             this._YTDIncomesByHouse = data;
-            this.houses.forEach(house => {
-                this._pieChartData.push(this._YTDIncomesByHouse[house.name]);
-            });
             this.pieChartData = this._pieChartData;
-            console.log(this.pieChartData);
         });
     }
 

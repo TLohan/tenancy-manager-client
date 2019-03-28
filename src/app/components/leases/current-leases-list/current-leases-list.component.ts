@@ -32,6 +32,10 @@ export class CurrentLeasesListComponent implements OnInit {
     getCurrentLeasesForHouse(name: string): Lease[] {
         return this.currentLeases.filter(lease => lease.flat.house.name === name);
     }
+
+    setStep(index: number): string {
+        return index % 2 === 0 ? 'odd' : 'even';
+    }
 }
 
 interface LeasesByHouse {

@@ -1,4 +1,4 @@
-<div class="container" [ngClass]="{odd: isOdd(), even: !isOdd()}">
+<div class="container" [ngClass]="{oddRow: isRowOdd(), evenRow: !isRowOdd(), oddThumb: isThumbOdd(), evenThumb: !isThumbOdd()}">
     <div id="title">
         <h2 id="flatNumber">Flat {{lease.flat.number}}</h2>
         <p id="startDate">Started: 25th July 2016</p>
@@ -6,10 +6,10 @@
 
     <hr>
 
-    <div class="row" id="tenantInfo">
-        <div class="col-10" *ngFor="let tenant of lease.tenants">
-            <span id="tenantName">{{tenant.firstName}} {{tenant.lastName}}</span>
-            <span id="phoneNumber">{{tenant.phoneNumber}}</span>
+    <div class="" id="tenantInfo">
+        <div class="row" *ngFor="let tenant of lease.tenants">
+            <span class="col-7" id="tenantName">{{tenant.firstName}} {{tenant.lastName}}</span>
+            <span class="col-3" id="phoneNumber">{{tenant.phoneNumber}}</span>
         </div>
     </div>
 

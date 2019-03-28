@@ -5,30 +5,9 @@
     <div *ngFor="let house of houses; let i = index">
         <div class="houseRow">
             <div class="houseName vertical-text" id="house{{house.id}}" >{{house.name}}</div>
-            <div class="leaseThumbnail" *ngFor="let lease of getCurrentLeasesForHouse(house.name)">
-                <app-lease-list-thumbnail [lease]="lease" [rowNumber]="i" [routerLink]="['/leases', lease.id]"></app-lease-list-thumbnail>
+            <div  class="leaseThumbnail" *ngFor="let lease of getCurrentLeasesForHouse(house.name); let j = index">
+                <app-lease-list-thumbnail [step]="setStep(j)"  [lease]="lease" [rowNumber]="i" [routerLink]="['/leases', lease.id]"></app-lease-list-thumbnail>
             </div>
         </div>
     </div>
-
-  <!-- <table class="table table-hover">
-      <thead>
-          <tr>
-              <th>House</th>
-              <th>Flat</th>
-              <th>Tenants</th>
-              <th>Rent</th>
-              <th>Start Date</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let lease of currentLeases" [routerLink]="['/leases', lease.id]">
-              <td>{{lease.flat.house.name | titlecase}}</td>
-              <td>{{lease.flat.number}}</td>
-              <td><p *ngFor="let tenant of lease.tenants">{{tenant.firstName}} {{tenant.lastName}}</p></td>
-              <td>{{lease.rent | currency:'EUR':'symbol':'1.0'}}</td>
-              <td>{{lease.startDate | date}}</td>
-          </tr>
-      </tbody>
-  </table> -->
 </div>

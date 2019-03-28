@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
     totalRent = 0;
     totalRentPaid = 0;
-    incomesFromEachHouse = {};
+    incomesFromEachHouse: {} = {};
 
 
     constructor(private housesService: HouseService,
@@ -58,11 +58,7 @@ export class HomeComponent implements OnInit {
     getTotalRentPaid() {
         let trp = 0;
         this.houses.forEach(house => {
-            house.flats.forEach(flat => {
-                if (flat.currentLease) {
-                    trp += flat.currentLease.rentPaidThisYear;
-                }
-            });
+            trp += this.getYTDIncomeForHouse(house.name);
         });
         return trp;
     }
