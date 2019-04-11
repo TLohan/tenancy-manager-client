@@ -31,6 +31,10 @@ import { PaymentsListComponent } from './components/payments/payments-list/payme
 import { LeaseResolverService } from './services/lease-resolver.service';
 import { StatsListComponent } from './components/stats/stats-list/stats-list.component';
 import { LeaseListThumbnailComponent } from './components/leases/lease-list-thumbnail/lease-list-thumbnail.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './components/login/login.component';
+import { CallbackComponent } from './components/login/callback.component';
 
 
 @NgModule({
@@ -49,7 +53,10 @@ import { LeaseListThumbnailComponent } from './components/leases/lease-list-thum
     RentReviewDetailsThumbnailComponent,
     PaymentsListComponent,
     StatsListComponent,
-    LeaseListThumbnailComponent
+    LeaseListThumbnailComponent,
+    LandingPageComponent,
+    LoginComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +82,8 @@ import { LeaseListThumbnailComponent } from './components/leases/lease-list-thum
     PaymentService,
     RentReviewService,
     FlatResolver,
-    LeaseResolverService
+    LeaseResolverService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

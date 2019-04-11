@@ -14,9 +14,9 @@ import { PaymentService } from 'src/app/services/payment.service';
 })
 export class StatsListComponent implements OnInit {
 
-    houses: House[];
+    houses: House[] = [];
     _incomeForLastFiveYears: number[] = [];
-    _YTDIncomesByHouse = {};
+    _pieChartData;
 
     get labels(): string[] {
         const labels = [];
@@ -34,13 +34,18 @@ export class StatsListComponent implements OnInit {
         return data;
     }
 
-    get _pieChartData(): number[] {
-        const results = [];
+    get pieChartData(): number[] {
+        const data = [];
         this.houses.forEach(house => {
-            results.push(this._YTDIncomesByHouse[house.name]);
+            data.push(this._pieChartData[house.name]);
         });
-        return results;
+        return data;
     }
+
+    set pieChartData(value) {
+        this._pieChartData = value;
+    }
+
 
     get incomeForLastFiveYears(): number[] {
         return this._incomeForLastFiveYears;
@@ -54,12 +59,10 @@ export class StatsListComponent implements OnInit {
 
 
     public pieChartLabels: Label[] = [];
-    public pieChartData: SingleDataSet = [];
     public pieChartType: Chart.ChartType = 'pie';
 
     public barChartOptions: Chart.ChartOptions = {
         responsive: true,
-        // We use these empty structures as placeholders for dynamic theming.
         scales: { xAxes: [{}], yAxes: [{
             ticks: {
                 callback: function(value) {
@@ -119,12 +122,12 @@ export class StatsListComponent implements OnInit {
       public lineChartLabels: Label[] = ['2014', '2015', '2016', '2017', '2018'];
       public lineChartOptions: (Chart.ChartOptions) = {
         responsive: true,
+        aspectRatio: 3,
         legend: {
             display: false
         },
 
         scales: {
-          // We use this empty structure as a placeholder for dynamic theming.
           xAxes: [{}],
           yAxes: [
             {
@@ -167,8 +170,7 @@ export class StatsListComponent implements OnInit {
         });
 
         this.paymentService.getIncomeForEachHouseThisYear().subscribe(data => {
-            this._YTDIncomesByHouse = data;
-            this.pieChartData = this._pieChartData;
+            this.pieChartData = data;
         });
     }
 

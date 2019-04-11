@@ -15,5 +15,8 @@
         <a class="nav-link" [routerLink]="['/stats']" [routerLinkActive]="['is-active']" (click)="closeMenu()">Stats</a>
       </li>
     </ul>
+    <div class="col-4" style="padding-left: 0">
+        <app-login [profile]="profile"></app-login>
+    </div>
   </div>
 </nav>

@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Sigmar+One|Raleway|Heebo|Oswald:700|Roboto+Condensed:400');
+
+.container-fluid {
+    background-color: #fcd04b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#wrapper {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    width: 60vw;
+}
+
+#first {
+    /* background-color: #f7c331; */
+    font-size: 4rem;
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-top: 2%; 
+}
+
+#second {
+    /* background-color: #e64759; */
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'Heebo', sans-serif;
+    font-size: 2rem;
+}
+
+#login-btn {
+    margin-top: 5%;
+    border: none;
+    background-color: #fcad26;
+    /* border: 1px solid #fff; */
+    color: white;
+    width: 15rem;
+    height: 4rem;
+    font-size: 1rem;
+    font-family: 'Heebo';
+    font-weight: 700;
+}
+
+#login-btn:hover {
+    background-color: #f3c068;
+}
+
+#icon-wrapper {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#icon {
+    width: 100%;
+}
+
+#btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#text-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@media (max-width: 767.98px) { 
+    #icon {
+        width: 30vw;
+    }
+
+    #first {
+        font-size: 1.8rem;
+    }
+
+    #second {
+        font-size: 1.3rem;
+    }
+ }

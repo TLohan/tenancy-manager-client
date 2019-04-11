@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-navmenu',
@@ -7,14 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavmenuComponent implements OnInit {
 
-  constructor() { }
+    @Input() profile: any;
 
-  ngOnInit() {
-  }
+    constructor() { }
 
-  closeMenu() {
-      const menu = <HTMLElement>document.querySelector('.navbar-toggler');
-      menu.click();
-  }
+    ngOnInit() {
+    }
+
+    closeMenu() {
+        const menu = <HTMLElement>document.querySelector('.navbar-toggler');
+        menu.click();
+    }
 
 }
